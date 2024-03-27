@@ -1,0 +1,71 @@
+import 'dart:io';
+
+// Interface definition
+abstract class Vehicle {
+  void start();
+  void stop();
+}
+
+// Parent class
+class Car implements Vehicle {
+  void start() {
+    print('Car started');
+  }
+
+  void stop() {
+    print('Car stopped');
+  }
+}
+
+// Child class inheriting from Car
+class SportsCar extends Car {
+  @override
+  void start() {
+    print('Sports car started with a roar');
+  }
+}
+
+// Class with data initialized from a file
+class Student {
+  String name;
+  int age;
+
+  Student(this.name, this.age);
+
+  void displayInfo() {
+    print('Name: $name');
+    print('Age: $age');
+  }
+}
+
+// Method demonstrating the use of a loop
+void printNumbers(int count) {
+  for (int i = 1; i <= count; i++) {
+    print(i);
+  }
+}
+
+void main() {
+  // Object-oriented model using classes and inheritance
+  var car = Car();
+  car.start();
+  car.stop();
+
+  var sportsCar = SportsCar();
+  sportsCar.start();
+  sportsCar.stop();
+
+  // Class implementing an interface
+  Vehicle vehicle = SportsCar(); // Polymorphism
+  vehicle.start();
+  vehicle.stop();
+
+  // Instance of a class initialized with data from a file
+  var file = File('data.txt');
+  var lines = file.readAsLinesSync();
+  var student = Student(lines[0], int.parse(lines[1]));
+  student.displayInfo();
+
+  // Method that demonstrates the use of a loop
+  printNumbers(5);
+}
