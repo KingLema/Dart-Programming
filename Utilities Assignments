@@ -1,0 +1,103 @@
+// Task 1: Function to calculate the sum of two numbers
+int sum(int a, int b) {
+  return a + b;
+}
+
+// Task 2: Program to print numbers from 1 to 10 using a for loop
+void printNumbers() {
+  for (int i = 1; i <= 10; i++) {
+    print(i);
+  }
+}
+
+// Task 3: Program to check different string values using a switch statement
+void checkString(String value) {
+  switch (value) {
+    case 'hello':
+      print('You entered "hello"');
+      break;
+    case 'world':
+      print('You entered "world"');
+      break;
+    default:
+      print('Unknown input');
+  }
+}
+
+// Task 4: Program to print numbers from 20 to 10 using a while loop
+void printNumbersWhile() {
+  int i = 20;
+  while (i >= 10) {
+    print(i);
+    i--;
+  }
+}
+
+// Task 5: Program to check if a number is even or odd using an if-else statement
+void checkEvenOdd(int number) {
+  if (number % 2 == 0) {
+    print('$number is even');
+  } else {
+    print('$number is odd');
+  }
+}
+
+// Task 6: Program to find the largest number in a list
+int findLargestNumber(List<int> numbers) {
+  int largest = numbers[0];
+  for (int i = 1; i < numbers.length; i++) {
+    if (numbers[i] > largest) {
+      largest = numbers[i];
+    }
+  }
+  return largest;
+}
+
+// Task 7: Program to catch an exception using a try-catch block
+void catchException() {
+  try {
+    var result = 10 ~/ 0; // Division by zero exception
+    print('Result: $result');
+  } catch (e) {
+    print('Error: $e');
+  }
+}
+
+void main() {
+  // Task 1: Function to calculate the sum of two numbers
+  int result = sum(5, 3);
+  print('Task 1: Sum of 5 and 3 is $result\n');
+
+  // Task 2: Program to print numbers from 1 to 10 using a for loop
+  print('Task 2: Numbers from 1 to 10:');
+  printNumbers();
+  print('');
+
+  // Task 3: Program to check different string values using a switch statement
+  print('Task 3:');
+  checkString('hello');
+  checkString('world');
+  checkString('openai');
+  print('');
+
+  // Task 4: Program to print numbers from 20 to 10 using a while loop
+  print('Task 4: Numbers from 20 to 10:');
+  printNumbersWhile();
+  print('');
+
+  // Task 5: Program to check if a number is even or odd using an if-else statement
+  print('Task 5: Check if numbers are even or odd:');
+  checkEvenOdd(12);
+  checkEvenOdd(7);
+  print('');
+
+  // Task 6: Program to find the largest number in a list
+  print('Task 6: Find the largest number in a list:');
+  List<int> numbers = [14, 29, 11, 35, 20];
+  int largestNumber = findLargestNumber(numbers);
+  print('Largest number: $largestNumber\n');
+
+  // Task 7: Program to catch an exception using a try-catch block
+  print('Task 7: Catch an exception:');
+  catchException();
+}
