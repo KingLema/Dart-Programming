@@ -1,0 +1,86 @@
+import 'dart:io';
+
+class TicTacToe {
+  List<List<String>> board;
+  String currentPlayer;
+  int moves;
+
+  TicTacToe() {
+    board = List.generate(3, (_) => List.filled(3, ' '));
+    currentPlayer = 'X';
+    moves = 0;
+  }
+
+  void playGame() {
+    print('Welcome to Tic Tac Toe!');
+    printBoard();
+
+    while (true) {
+      print('\n$currentPlayer\'s turn. Enter row and column (e.g., 1 1):');
+      String input = stdin.readLineSync();
+
+      if (input == 'exit') {
+        print('\nGame exited.');
+        return;
+      }
+
+      List<String> coordinates = input.split(' ');
+      int row = int.tryParse(coordinates[0]) ?? -1;
+      int col = int.tryParse(coordinates[1]) ?? -1;
+
+      if (isValidMove(row, col)) {
+        makeMove(row, col);
+        printBoard();
+
+        if (checkWin(row, col)) {
+          print('\n$currentPlayer wins!');
+          return;
+        }
+
+        if (moves == 9) {
+          print('\nIt\'s a tie!');
+          return;
+        }
+
+        switchPlayer();
+      } else {
+        print('\nInvalid move! Please try again.');
+      }
+    }
+  }
+
+  void printBoard() {
+    print('\n  1 2 3');
+    for (int i = 0; i < 3; i++) {
+      print('${i + 1} ${board[i][0]}|${board[i][1]}|${board[i][2]}');
+      if (i < 2) {
+        print('  -----');
+      }
+    }
+  }
+
+  bool isValidMove(int row, int col) {
+    return row >= 0 && row < 3 && col >= 0 && col < 3 && board[row][col] == ' ';
+  }
+
+  void makeMove(int row, int col) {
+    board[row][col] = currentPlayer;
+    moves++;
+  }
+
+  bool checkWin(int row, int col) {
+    return (board[row][0] == currentPlayer && board[row][1] == currentPlayer && board[row][2] == currentPlayer) ||
+        (board[0][col] == currentPlayer && board[1][col] == currentPlayer && board[2][col] == currentPlayer) ||
+        (board[0][0] == currentPlayer && board[1][1] == currentPlayer && board[2][2] == currentPlayer) ||
+        (board[0][2] == currentPlayer && board[1][1] == currentPlayer && board[2][0] == currentPlayer);
+  }
+
+  void switchPlayer() {
+    currentPlayer = currentPlayer == 'X' ? 'O' : 'X';
+  }
+}
+
+void main() {
+  TicTacToe game = TicTacToe();
+  game.playGame();
+}
